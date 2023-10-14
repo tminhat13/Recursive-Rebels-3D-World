@@ -5,7 +5,7 @@ Create an original scene in Minecraft fashion. It is simple but can be used to d
 
 ## Product Spec
 
-### 1. User Stories (Required and Optional)
+### User Stories (Required and Optional)
 
 **Required Must-have Stories**
 Check Point 1 Requirements:
