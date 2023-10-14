@@ -10,7 +10,7 @@ Create an original scene in Minecraft fashion. It is simple but can be used to d
 **Required Must-have Stories**
 
 Check Point 1:
-- [X] As always the Java style sheet should be followed with code separated into separate classes as needed.
+- [X] The Java style sheet should be followed with code separated into separate classes as needed.
 - [X] Have a window created that is 640x480 and centered on the screen.
 - [ ] Be able to display a cube (which is at least 2 in width) in 3D space with each face colored differently.
 - [ ] Be able to manipulate the camera with the mouse to give a first person appearance
