@@ -15,7 +15,7 @@ Check Point 1:
 - [ ] Be able to display a cube (which is at least 2 in width) in 3D space with each face colored differently.
 - [ ] Be able to manipulate the camera with the mouse to give a first person appearance
 - [ ] Be able to navigate the environment using the input.Keyboard class with either the w,a,s,d keys or the arrow keys to move around as well as the space bar to move up and the left shift button to go down.
-- [ ] Use the escape key quit your application.
+- [X] Use the escape key quit your application.
 
 Check Point 2:
 - [ ] Be able to draw multiple cubes using our chunks method (creating a world at least 30 cubes x 30 cubes large), with each cube textured and then randomly placed
