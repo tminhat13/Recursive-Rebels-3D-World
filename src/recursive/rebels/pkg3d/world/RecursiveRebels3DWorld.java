@@ -1,7 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+/***************************************************************
+* file: RecursiveRebels3DWorld.java
+* author: Nhat Tran
+* class: CS 4450 - Computer Graphic
+*
+* assignment: Final Program
+* date last modified: 10/14/2023
+*
+* purpose: Create an original scene in Minecraft fashion
+*
+****************************************************************/
 package recursive.rebels.pkg3d.world;
 
 import org.lwjgl.opengl.Display;
@@ -9,27 +16,22 @@ import org.lwjgl.opengl.DisplayMode;
 import static org.lwjgl.opengl.GL11.*;
 import org.lwjgl.input.Keyboard;
 
-/**
- *
- * @author prapi
- */
+
 public class RecursiveRebels3DWorld {
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
         RecursiveRebels3DWorld  app = new RecursiveRebels3DWorld();
         app.start();
     }
-    
+
     public void start(){
         try{
             createWindow();
             initL();
             render();
         } catch(Exception e){
-            e.printStackTrace();
+            System.out.print(e);
         }
     }
     
@@ -45,9 +47,11 @@ public class RecursiveRebels3DWorld {
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         
-        glOrtho(-320, 320, -240, 240, 1, -1);
+        glOrtho(-32, 32, -24, 24 , 100, -100);
         glMatrixMode(GL_MODELVIEW);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+        // glEnable(GL_CULL_FACE);
+        glEnable(GL_DEPTH_TEST);
     }
 
     private void render() {
@@ -55,30 +59,19 @@ public class RecursiveRebels3DWorld {
             try{
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                 glLoadIdentity();
-                glPointSize(2);
+                glPointSize(1);
+                Cube c1 = new Cube(4);
                 
-//               testing case
-//                for(int i =0; i< polygons.size();i++){
-//                    glPushMatrix();
-//                    polygons.get(i).transform();
-//                    glBegin(GL_POLYGON);
-//                    polygons.get(i).getPoints().forEach(p ->glVertex2f (p.getX(), p.getY()));
-//                    glEnd();
-//                    glPopMatrix();
-//                }
-//                for(int i =0; i< polygons.size();i++){
-//                    glPushMatrix();
-//                    polygons.get(i).transform();
-                    glBegin(GL_POINTS);
-//                    polygons.get(i).fill();
-                    glEnd();
-//                    glPopMatrix();
-//                }
-                
+                glRotatef(45,0,0,1);
+                glRotatef(45,0,1,0);
+                glRotatef(45,1,0,0);
+                c1.drawFaces();
+                c1.drawLines();
+                  
                 Display.update();
                 Display.sync(60);
             }catch(Exception e){
-                
+                System.out.print(e);
             }
         }
         Display.destroy();
