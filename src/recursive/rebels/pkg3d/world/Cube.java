@@ -11,34 +11,44 @@
 ****************************************************************/
 package recursive.rebels.pkg3d.world;
 
-import java.util.ArrayList;
 import static org.lwjgl.opengl.GL11.*;
 
 
 public class Cube {
 
-    private final float x;
-    private final float y;
-    private final float z;
-    private final ArrayList<Point> positions = new ArrayList<>();
-    private final int[][] indices;
-    private final float[][] colors;
+    private float x;
+    private float y;
+    private float z;
+    //private ArrayList<Point> positions = new ArrayList<>();
+    private float[][] positions;
+    private int[][] indices;
+    private float[][] colors;
     
     Cube (float width){
         this.x = width/2;
         this.y = width/2;
         this.z = width/2;
         
-        this.positions.add(new Point(x, y, z)); // V0
-        this.positions.add(new Point(-x, y, z)); // V1
-        this.positions.add(new Point(-x, -y, z)); // V2
-        this.positions.add(new Point(x, -y, z)); // V3
-        this.positions.add(new Point(-x, y, -z)); // V4
-        this.positions.add(new Point(x, y, -z)); // V5
-        this.positions.add(new Point(x, -y, -z)); // V6
-        this.positions.add(new Point(-x, -y, -z)); // V7
+//        this.positions.add(new Point(x, y, z)); // V0
+//        this.positions.add(new Point(-x, y, z)); // V1
+//        this.positions.add(new Point(-x, -y, z)); // V2
+//        this.positions.add(new Point(x, -y, z)); // V3
+//        this.positions.add(new Point(-x, y, -z)); // V4
+//        this.positions.add(new Point(x, y, -z)); // V5
+//        this.positions.add(new Point(x, -y, -z)); // V6
+//        this.positions.add(new Point(-x, -y, -z)); // V7
 
-        this.indices = new int[][] {
+            this.positions = new float[][]{
+                {x, y, z},  //v0
+                {-x, y, z},  //v1
+                {-x, -y, z}, //v2
+                {x, -y, z}, //v3
+                {-x, y, -z}, //v4
+                {x, y, -z}, //v5
+                {x, -y, -z}, //v6
+                {-x, -y, -z} //v7
+            };
+            this.indices = new int[][] {
             // Front face
             {0, 1, 2, 3},
             // Top Face
@@ -80,7 +90,7 @@ public class Cube {
         return z;
     }
 
-    ArrayList<Point> getPositions() {
+    public float[][] getPositions() {
         return this.positions;
     }
 
@@ -93,9 +103,9 @@ public class Cube {
         for (int i = 0; i < this.indices.length; i++) {
             glColor3f(this.colors[i][0],this.colors[i][1],this.colors[i][2]);
             for (int j = 0; j < this.indices[i].length; j++) {
-                glVertex3f(this.getPositions().get(this.indices[i][j]).getX(),
-                        this.getPositions().get(this.indices[i][j]).getY(),
-                        this.getPositions().get(this.indices[i][j]).getZ());
+                glVertex3f(this.positions[this.indices[i][j]][0],
+                        this.positions[this.indices[i][j]][1],
+                        this.positions[this.indices[i][j]][2]);
             }
         }
         glEnd();
@@ -106,9 +116,9 @@ public class Cube {
         for (int[] indice : this.getIndices()) {
             glBegin(GL_LINE_LOOP);
             for (int j = 0; j < indice.length; j++) {
-                glVertex3f(this.getPositions().get(indice[j]).getX(), 
-                        this.getPositions().get(indice[j]).getY(), 
-                        this.getPositions().get(indice[j]).getZ());
+                glVertex3f(this.positions[indice[j]][0],
+                        this.positions[indice[j]][1],
+                        this.positions[indice[j]][2]);
             }
             glEnd();
         }
