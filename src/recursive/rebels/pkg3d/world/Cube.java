@@ -62,9 +62,9 @@ public class Cube {
             // Left face
             {0.0f, 1.0f, 1.0f},
             // Bottom face
-            {1.0f, 0.0f, 0.0f},
+            {1.0f, 1.0f, 0.0f},
             // Back face
-            {0.0f, 1.0f, 0.0f}
+            {1.0f, 0.0f, 1.0f}
         };
     }
 

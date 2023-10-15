@@ -14,22 +14,19 @@ package recursive.rebels.pkg3d.world;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import static org.lwjgl.opengl.GL11.*;
-import org.lwjgl.input.Keyboard;
+import org.lwjgl.util.glu.GLU;
 
 
 public class RecursiveRebels3DWorld {
 
-    
-    public static void main(String[] args) {
-        RecursiveRebels3DWorld  app = new RecursiveRebels3DWorld();
-        app.start();
-    }
+    private FPCameraController fp = new FPCameraController(0f,0f,0f);
+    private DisplayMode displayMode;
 
     public void start(){
         try{
             createWindow();
             initL();
-            render();
+            fp.gameLoop();//render();
         } catch(Exception e){
             System.out.print(e);
         }
@@ -37,8 +34,16 @@ public class RecursiveRebels3DWorld {
     
     private void createWindow() throws Exception{
         Display.setFullscreen(false);
-        Display.setDisplayMode(new DisplayMode(640,480));
-        Display.setTitle("3D World");
+        DisplayMode d[] = Display.getAvailableDisplayModes();
+        for (int i= 0; i< d.length; i++) {
+            if (d[i].getWidth() == 640
+                && d[i].getHeight() == 480
+                && d[i].getBitsPerPixel() == 32) {
+                displayMode= d[i];
+                break;
+            }
+        }
+        Display.setDisplayMode(displayMode); Display.setTitle("Recursive Rebels");
         Display.create();
     }
 
@@ -46,34 +51,40 @@ public class RecursiveRebels3DWorld {
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        
-        glOrtho(-32, 32, -24, 24 , 100, -100);
+        GLU.gluPerspective(100.0f, (float)displayMode.getWidth()/(float)
+            displayMode.getHeight(), 0.1f, 300.0f);
+        //glOrtho(-320, 320, -240, 240 , 1000, -1000);
         glMatrixMode(GL_MODELVIEW);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
         // glEnable(GL_CULL_FACE);
         glEnable(GL_DEPTH_TEST);
     }
 
-    private void render() {
-        while(!Display.isCloseRequested() && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)){
-            try{
-                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-                glLoadIdentity();
-                glPointSize(1);
-                Cube c1 = new Cube(4);
-                
-                glRotatef(45,0,0,1);
-                glRotatef(45,0,1,0);
-                glRotatef(45,1,0,0);
-                c1.drawFaces();
-                c1.drawLines();
-                  
-                Display.update();
-                Display.sync(60);
-            }catch(Exception e){
-                System.out.print(e);
-            }
-        }
-        Display.destroy();
+//    private void render() {
+//        while(!Display.isCloseRequested() && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)){
+//            try{
+//                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//                glLoadIdentity();
+//                glPointSize(1);
+//                Cube c1 = new Cube(200);
+//                
+//                glRotatef(45,0,0,1);
+//                glRotatef(45,0,1,0);
+//                glRotatef(45,1,0,0);
+//                c1.drawFaces();
+//                c1.drawLines();
+//                  
+//                Display.update();
+//                Display.sync(60);
+//            }catch(Exception e){
+//                System.out.print(e);
+//            }
+//        }
+//        Display.destroy();
+//    }
+    
+    public static void main(String[] args) {
+        RecursiveRebels3DWorld  app = new RecursiveRebels3DWorld();
+        app.start();
     }
 }
