@@ -41,6 +41,9 @@ public class RecursiveRebels3DWorld {
                 break;
             }
         }
+        if(displayMode==null){
+            displayMode = new DisplayMode(640, 480);
+        }
         Display.setDisplayMode(displayMode); Display.setTitle("Recursive Rebels");
         Display.create();
     }
