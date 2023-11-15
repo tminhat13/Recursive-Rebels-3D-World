@@ -21,10 +21,12 @@ Check Point 1:
 - [x] Be able to navigate the environment using the input.Keyboard class with either the w,a,s,d keys or the arrow keys to move around as well as the space bar to move up and the left shift button to go down.
 - [x] Use the escape key quit your application.
 
+<img src="checkpoint01.gif" width=400>
+
 Check Point 2:
 
-- [ ] Be able to draw multiple cubes using our chunks method (creating a world at least 30 cubes x 30 cubes large), with each cube textured and then randomly placed using the simplex noise classes provided (Your terrain should be randomly placed each time you run the program but still appear to smoothly rise and fall as opposed to sudden mountains and valleys appearing).
-- [ ] Have a minimum of 6 cube types defined with a different texture for each one as follows: Grass, sand, water, dirt, stone, and bedrock.
+- [x] Be able to draw multiple cubes using our chunks method (creating a world at least 30 cubes x 30 cubes large), with each cube textured and then randomly placed using the simplex noise classes provided (Your terrain should be randomly placed each time you run the program but still appear to smoothly rise and fall as opposed to sudden mountains and valleys appearing).
+- [x] Have a minimum of 6 cube types defined with a different texture for each one as follows: Grass, sand, water, dirt, stone, and bedrock.
 
 <img src="CheckPoint02.PNG" width=400>
 
