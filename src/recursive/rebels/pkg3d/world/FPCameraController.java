@@ -163,7 +163,9 @@ public class FPCameraController {
             camera.lookThrough();
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             //you would draw your scene here.
-            render();
+//            render();
+            Chunk chunk = new Chunk(0, 0, 0);
+            chunk.render();
             //draw the buffer to the screen
             Display.update();
             Display.sync(60);
@@ -171,13 +173,13 @@ public class FPCameraController {
         Display.destroy();
     }
     
-    private void render() {
-        try{
-            Cube c1 = new Cube(10);
-            c1.drawFaces();
-            c1.drawLines();
-        }
-        catch(Exception e){
-        }
-    }
+//    private void render() {
+//        try{
+//            Cube c1 = new Cube(10);
+//            c1.drawFaces();
+//            c1.drawLines();
+//        }
+//        catch(Exception e){
+//        }
+//    }
 }

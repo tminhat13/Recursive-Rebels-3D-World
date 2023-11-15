@@ -19,13 +19,14 @@ import org.lwjgl.util.glu.GLU;
 
 public class RecursiveRebels3DWorld {
 
-    private FPCameraController fp = new FPCameraController(0f,0f,0f);
+    private FPCameraController fp;
     private DisplayMode displayMode;
 
     public void start(){
         try{
             createWindow();
             initL();
+            fp = new FPCameraController(0f,0f,0f);
             fp.gameLoop();//render();
         } catch(Exception e){
             System.out.print(e);
@@ -55,7 +56,11 @@ public class RecursiveRebels3DWorld {
         glMatrixMode(GL_MODELVIEW);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
         // glEnable(GL_CULL_FACE);
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_COLOR_ARRAY);
         glEnable(GL_DEPTH_TEST);
+        glEnable(GL_TEXTURE_2D);
+        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     }
 
 //    private void render() {
