@@ -26,6 +26,8 @@ Check Point 2:
 - [ ] Be able to draw multiple cubes using our chunks method (creating a world at least 30 cubes x 30 cubes large), with each cube textured and then randomly placed using the simplex noise classes provided (Your terrain should be randomly placed each time you run the program but still appear to smoothly rise and fall as opposed to sudden mountains and valleys appearing).
 - [ ] Have a minimum of 6 cube types defined with a different texture for each one as follows: Grass, sand, water, dirt, stone, and bedrock.
 
+<img src="CheckPoint02.PNG" width=400>
+
 Check Point 3:
 
 - [ ] Be able to correctly place only grass, sand, or water at the topmost level of terrain, dirt, or stone at levels below the top, and bedrock at the very bottom of the generated terrain.
