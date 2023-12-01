@@ -4,13 +4,15 @@
 * class: CS 4450 - Computer Graphic
 *
 * assignment: Final Program
-* date last modified: 10/14/2023
+* date last modified: 11/30/2023
 *
 * purpose: Create an original scene in Minecraft fashion
 *
 ****************************************************************/
 package recursive.rebels.pkg3d.world;
 
+import java.nio.FloatBuffer;
+import org.lwjgl.BufferUtils;
 import org.lwjgl.util.vector.Vector3f;import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
@@ -56,6 +58,9 @@ public class FPCameraController {
         float zOffset= distance * (float)Math.cos(Math.toRadians(yaw));
         position.x-= xOffset;
         position.z+= zOffset;
+        FloatBuffer lightPosition = BufferUtils.createFloatBuffer(4);
+        lightPosition.put(lPosition.x-=xOffset).put(lPosition.y).put(lPosition.z+=zOffset).put(1.0f).flip();
+        glLight(GL_LIGHT0, GL_POSITION, lightPosition);
     }
     
     //moves the camera backward relative to its current rotation (yaw)
@@ -65,6 +70,9 @@ public class FPCameraController {
         float zOffset= distance * (float)Math.cos(Math.toRadians(yaw));
         position.x+= xOffset;
         position.z-= zOffset;
+        FloatBuffer lightPosition = BufferUtils.createFloatBuffer(4);
+        lightPosition.put(lPosition.x+=xOffset).put(lPosition.y).put(lPosition.z-=zOffset).put(1.0f).flip();
+        glLight(GL_LIGHT0, GL_POSITION, lightPosition);
     }
     //strafes the camera left relative to its current rotation (yaw)
     public void strafeLeft(float distance)
@@ -73,6 +81,9 @@ public class FPCameraController {
         float zOffset= distance * (float)Math.cos(Math.toRadians(yaw-90));
         position.x-= xOffset;
         position.z+= zOffset;
+        FloatBuffer lightPosition = BufferUtils.createFloatBuffer(4);
+        lightPosition.put(lPosition.x-=xOffset).put(lPosition.y).put(lPosition.z+=zOffset).put(1.0f).flip();
+        glLight(GL_LIGHT0, GL_POSITION, lightPosition);
     }
     //strafes the camera right relative to its current rotation (yaw)
     public void strafeRight(float distance)
@@ -81,6 +92,9 @@ public class FPCameraController {
         float zOffset= distance * (float)Math.cos(Math.toRadians(yaw+90));
         position.x-= xOffset;
         position.z+= zOffset;
+        FloatBuffer lightPosition = BufferUtils.createFloatBuffer(4);
+        lightPosition.put(lPosition.x-=xOffset).put(lPosition.y).put(lPosition.z+=zOffset).put(1.0f).flip();
+        glLight(GL_LIGHT0, GL_POSITION, lightPosition);
     }   
     
     //moves the camera up relative to its current rotation (yaw)
@@ -104,6 +118,9 @@ public class FPCameraController {
         glRotatef(yaw, 0.0f, 1.0f, 0.0f);
         //translate to the position vector's location
         glTranslatef(position.x, position.y, position.z);
+        FloatBuffer lightPosition= BufferUtils.createFloatBuffer(4);
+        lightPosition.put(lPosition.x).put(lPosition.y).put(lPosition.z).put(1.0f).flip();
+        glLight(GL_LIGHT0, GL_POSITION, lightPosition);
     }
     public void gameLoop()
     {

@@ -4,7 +4,7 @@
 * class: CS 4450 - Computer Graphic
 *
 * assignment: Final Program
-* date last modified: 11/14/2023
+* date last modified: 11/30/2023
 *
 * purpose: Create an original scene in Minecraft fashion
 *
@@ -167,16 +167,21 @@ public class Chunk {
         for (int i = 0; i < CHUNK_SIZE; i++) {
             for (int j = 0; j < CHUNK_SIZE; j++) {
                 for (int k = 0; k < CHUNK_SIZE; k++) {
-                    heightMap[i][j] = (noise.getNoise(StartX + i, StartY + j, StartZ + k) + 1) * 8;
+                    heightMap[i][j] = (noise.getNoise(StartX + i, StartY + j, StartZ + k) + 1) * 6;
                 }
             }
         }
 
+        
         // generate blocks based on height
+        int lowest = CHUNK_SIZE;
         Blocks = new Block[CHUNK_SIZE][CHUNK_SIZE][CHUNK_SIZE];
         for (int x = 0; x < CHUNK_SIZE; x++) {
             for (int z = 0; z < CHUNK_SIZE; z++) {
                 int height = (int) heightMap[x][z];
+                if (height < lowest){
+                    lowest = height;
+                }
                 for (int y = 0; y < CHUNK_SIZE; y++) {
                     if (y > heightMap[x][z]) {
                         Blocks[x][y][z] = null;
@@ -187,12 +192,12 @@ public class Chunk {
                     else if (y < CHUNK_SIZE / 8) {
                         Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Stone);
                     } 
-                    else if (y < CHUNK_SIZE / 6) {
-                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Sand);
-                    }
-                    else if (y < CHUNK_SIZE / 4) {
-                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Water);
-                    }
+//                    else if (y < CHUNK_SIZE / 6) {
+//                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Sand);
+//                    }
+//                    else if (y < CHUNK_SIZE / 4) {
+//                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Water);
+//                    }
                     else if (y == height) { 
                         Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Grass);           
                     }
@@ -202,6 +207,31 @@ public class Chunk {
                 }
             }
         }
+        
+         // Fill sand      
+        for (int x = 0; x < CHUNK_SIZE; x++) {
+            for (int z = 0; z < CHUNK_SIZE; z++) {
+                if (Blocks[x][lowest+1][z] == null) {
+                    continue;
+                }
+                if ((x + 1 < CHUNK_SIZE && Blocks[x + 1][lowest+1][z] == null) || (x - 1 >= 0 && Blocks[x - 1][lowest+1][z] == null)
+                        || (z + 1 < CHUNK_SIZE && Blocks[x][lowest+1][z + 1] == null) || (z - 1 >= 0 && Blocks[x][lowest+1][z - 1] == null)) {
+                    Blocks[x][lowest+1][z] = new Block(Block.BlockType.BlockType_Sand);
+                }
+            }
+        }
+        // Fill water
+        for (int x = 0; x < CHUNK_SIZE; x++) {
+            for (int z = 0; z < CHUNK_SIZE; z++) {
+                if (Blocks[x][lowest+1][z] == null) {
+                    Blocks[x][lowest+1][z] = new Block(Block.BlockType.BlockType_Water);
+                    if (lowest >= 1) {
+                        Blocks[x][lowest][z] = new Block(Block.BlockType.BlockType_Sand);
+                    }
+                }
+            }
+        }
+        
         rebuildMesh(startX, startY, startZ);
     }
     
