@@ -35,6 +35,8 @@ Check Point 3:
 - [ ] Be able to correctly place only grass, sand, or water at the topmost level of terrain, dirt, or stone at levels below the top, and bedrock at the very bottom of the generated terrain.
 - [ ] A light source should be created that will leave half the world brightly lit and the other half dimly illuminated.
 
+<img src="CP3.PNG" width=400>
+
 Final Check Point:
 
 - [ ] Decide on three extra functionalities (such as making sure the user does not go past the
