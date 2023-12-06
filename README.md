@@ -32,20 +32,23 @@ Check Point 2:
 
 Check Point 3:
 
-- [ ] Be able to correctly place only grass, sand, or water at the topmost level of terrain, dirt, or stone at levels below the top, and bedrock at the very bottom of the generated terrain.
-- [ ] A light source should be created that will leave half the world brightly lit and the other half dimly illuminated.
+- [x] Be able to correctly place only grass, sand, or water at the topmost level of terrain, dirt, or stone at levels below the top, and bedrock at the very bottom of the generated terrain.
+- [x] A light source should be created that will leave half the world brightly lit and the other half dimly illuminated.
 
 <img src="CP3.gif" width=400>
 
 Final Check Point:
 
-- [ ] Decide on three extra functionalities (such as making sure the user does not go past the
+- [x] Decide on three extra functionalities (such as making sure the user does not go past the
       edge of your created “universe”, collision detection, gravity, “face picking”, day/night cycles, adding
       flora randomly, river or lake generation, etc… this is not a complete list but rather some ideas to get you
       to start thinking of what some extra functionalities you may want to add) to the core program
       requirements we will be looking for. These added functions should be clearly stated in detail in your
       comments, including how they work (Press F1 to change everything from the current texture to one that
       makes it look like an alien world for example).
+
+Decided on lake generation, day/night cycles, and winter/spring terrain
+<img src="FinalCP.gif" width=400>
 
 ### App Evaluation
 

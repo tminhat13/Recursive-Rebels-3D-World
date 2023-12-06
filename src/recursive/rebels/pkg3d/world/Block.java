@@ -22,7 +22,9 @@ class Block {
         BlockType_Dirt(3),
         BlockType_Stone(4),
         BlockType_Bedrock(5), 
-        BlockType_Default(6);
+        BlockType_Snow(6),
+        BlockType_Ice(7), 
+        BlockType_Default(8);
         
         private int BlockID;
         

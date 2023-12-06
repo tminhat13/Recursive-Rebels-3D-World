@@ -73,6 +73,8 @@ public class RecursiveRebels3DWorld {
         glLight(GL_LIGHT0, GL_AMBIENT, whiteLight);//sets our ambient light
         glEnable(GL_LIGHTING);//enables our lighting
         glEnable(GL_LIGHT0);//enables light0    
+        
+        
     }
     
     private void initLightArrays() {
